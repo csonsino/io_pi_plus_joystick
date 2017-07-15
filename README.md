@@ -4,9 +4,9 @@ Runs a python-uinput based joystick from IO Pi Plus i2c inputs
 
 This project allows an AB Electronics IO Pi Plus Raspberry Pi expansion board (https://www.abelectronics.co.uk/p/54/IO-Pi-Plus) to be used to drive a python-uinput joystick.
 
-The code currently supports a 1-Player and 2-Player joystick, but could easily be expanded to include more joysticks.  The code currently uses a polling mechanism (see the Wishlist), and instead of using a single process with round-robin polling for all joysticks, each joystick runs as a separate process.  The thought is that a multiprocessor device could potentially handle the polling in parallel, thereby eliminating the round-robin delay for button processing on multiple joysticks.  This might be a completely flawed thought process and for all I know it runs serially. 
+The code currently supports a 1-Player and 2-Player joystick, but could easily be expanded to include more joysticks.
 
-Refer to io\_pi\_plus\_joystick/input\_def.py for the IO Pi Plus pin - to - uinput joystick button mappings.
+Refer to ```io_pi_plus_joystick/input_def.py``` for the IO Pi Plus pin - to - uinput joystick button mappings.
 
 # Cloning
 
@@ -143,6 +143,12 @@ For Player 2 Joystick, typically /dev/input/js1:
 ```
 jstest /dev/input/js1
 ```
+
+# Performance and CPU Usage
+
+The code currently uses a polling mechanism (see the Wishlist), and instead of using a single process with round-robin polling for all joysticks, I decided to run each joystick as a separate process.  The thought is that a multiprocessor device could potentially handle the polling in parallel, thereby eliminating the round-robin delay for button processing on multiple joysticks.  This might be a completely flawed thought process and for all I know it runs serially.
+
+The polling interval is controlled by the ```BUTTON_POLL_S``` setting in ```io_pi_plus_joystick/input_def.py```.  There is a balance in trying to make this value as small as possible (to poll as quickly as possible, making the joystick more responsive), while still allowing the CPU to do other things (keeping the CPU utilization by the polling process as low as possible).  On my Raspberry Pi 3 with the value of ```0.007``` (7 milliseconds between polling loops), I observe a typical CPU usage around 3.5-5% per joystick (under 10% for a 2-payer system).  The joysticks and buttons seem to be very responsive, and it makes for a great playing experience on my custom built cabinet.
 
 # Wishlist
 
