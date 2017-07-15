@@ -33,7 +33,6 @@ __credits__ = ["Carey Sonsino", "AB Electronics UK", "Chris Swan"]
 __license__ = "GPL"
 __version__ = "2"
 __maintainer__ = "Carey Sonsino"
-__email__ = "csonsino@gmail.com"
 __status__ = "Development"
 
 # all possible events

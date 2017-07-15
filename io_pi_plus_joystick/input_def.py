@@ -21,7 +21,6 @@ __credits__ = ["Carey Sonsino", "AB Electronics UK", "Chris Swan"]
 __license__ = "GPL"
 __version__ = "2"
 __maintainer__ = "Carey Sonsino"
-__email__ = "csonsino@gmail.com"
 __status__ = "Development"
 
 # Set to True to print detected inputs
@@ -29,7 +28,7 @@ __status__ = "Development"
 DEBUG_JOYSTICK = False
 
 # This is the number of seconds between polling the bus
-BUTTON_POLL_S = 0.01
+BUTTON_POLL_S = 0.007
 
 # These are controlled by the jumpers on the IO Pi Plus board
 BUS_1_ADDRESS = 0x20
